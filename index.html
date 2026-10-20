@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth" data-page-node-id="fBB7FOG0slL4aObDHjxgh8">
+<head data-page-node-id="DyZOfTtKL8UOPnESpdceze">
+<meta charset="UTF-8" data-page-node-id="mHZRfYfjMf5XG2dLxR02Tc" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="Nt4NqweArvQSX895WUPyDC" />
+<title>朱明慈 · 个人作品集</title>
+<meta name="description" content="朱明慈 —— 嵌入式 AI 视觉 · AR 空间感知方向。南京财经大学计算机科学与技术。" data-page-node-id="DdAjfVESquMoHf34FHYWbd" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' data-page-node-id="tVKZoaHrLbwPz2orRYjREM"><text y='.9em' font-size='90' data-page-node-id="7deWHnK0XE2lAxj4ccfaa9">✦</text></svg>" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"PingFang SC"', '"HarmonyOS Sans SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          ink:      { 900:'#0f172a', 700:'#334155', 500:'#64748b' },
+          accent:   { 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5' },
+        },
+        boxShadow: {
+          card:  '0 8px 30px rgba(30,41,59,.10)',
+          lift:  '0 18px 50px rgba(30,41,59,.18)',
+          glass: 'inset 0 1px 0 rgba(255,255,255,.65)',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  /* ---------- 基础 ---------- */
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+  ::selection { background: rgba(99,102,241,.18); }
+
+  /* ---------- 入场动画 ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: fadeUp .9s cubic-bezier(.22,.61,.36,1) forwards; }
+  .d-1 { animation-delay: .10s } .d-2 { animation-delay: .25s }
+  .d-3 { animation-delay: .40s } .d-4 { animation-delay: .55s }
+  .d-5 { animation-delay: .70s } .d-6 { animation-delay: .85s }
+
+  /* ---------- 无限循环滑动 ---------- */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* ---------- 柔和 3D 氛围光斑 ---------- */
+  @keyframes drift {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%     { transform: translate(3%,-4%) scale(1.06); }
+  }
+  .blob { animation: drift 14s ease-in-out infinite; }
+
+  /* ---------- 联系我弹层 ---------- */
+  .contact-pop {
+    opacity: 0; transform: translateY(8px) scale(.97);
+    pointer-events: none;
+    transition: opacity .28s ease, transform .28s cubic-bezier(.22,.61,.36,1);
+  }
+  .contact-wrap:hover .contact-pop,
+  .contact-pop.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+  /* ---------- 卡片图片 ---------- */
+  .card-img { transition: transform .7s cubic-bezier(.22,.61,.36,1); }
+  .work-card:hover .card-img { transform: scale(1.07); }
+
+  /* ---------- 滚动进入视口时淡入（第二屏） ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .85s cubic-bezier(.22,.61,.36,1), transform .85s cubic-bezier(.22,.61,.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .marquee-track, .blob { animation: none; }
+  }
+</style>
+</head>
+
+<body class="font-sans bg-slate-50 text-ink-900" data-page-node-id="9ieyf69JeQ3qqEpYgDnnxN">
+
+<!-- ================= 首屏 ================= -->
+<section id="top" class="relative min-h-[100svh] flex flex-col overflow-hidden" data-page-node-id="MCDEgqu3u833vIruSG1yj1">
+
+  <!-- 背景图 + 柔光遮罩（左侧渐白，保证文字永远不压在视觉主体上） -->
+  <div class="absolute inset-0 -z-10" data-page-node-id="oag2h46O3OP589TSYBOiBv">
+    <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=2400&h=1350&fit=crop&q=80&auto=format"
+         alt="柔和三维波浪背景" class="w-full h-full object-cover" data-page-node-id="eguaVh8deilp6nt4eBbPFQ" />
+    <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/55 to-white/10" data-page-node-id="YxSyezqFsdaBPNllLhgz72"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/40" data-page-node-id="UWHy7RXJiix6LSdalHvXuC"></div>
+  </div>
+
+  <!-- 氛围光斑（纯 CSS，不依赖图片） -->
+  <div class="absolute -z-10 top-1/4 right-[8%] w-[28rem] h-[28rem] rounded-full bg-indigo-300/25 blur-3xl blob" data-page-node-id="4KLzUEscEc5SNGF2W9T2DD"></div>
+  <div class="absolute -z-10 bottom-[22%] left-[4%] w-[22rem] h-[22rem] rounded-full bg-violet-200/30 blur-3xl blob" style="animation-delay:-7s" data-page-node-id="GQA1lyd5asw7D5GwAitY3L"></div>
+
+  <!-- ================= 导航栏 ================= -->
+  <header class="relative z-30" data-page-node-id="AevNMqe9Ewhn3aCAAvF8Lj">
+    <nav class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 h-16 sm:h-20 flex items-center justify-between" data-page-node-id="AhYQw6SP1lXHwoMCs9535w">
+      <!-- 左：LOGO -->
+      <a href="#" class="flex items-center gap-2.5 group" data-page-node-id="eTQstqUQ5QuWS2JTnpoxCS">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-violet-500 text-white grid place-items-center font-bold shadow-card shadow-indigo-500/30 group-hover:rotate-6 transition-transform duration-300" data-page-node-id="HZU5vDABUMECtsQ5ca9gwO">Z</span>
+        <span class="text-lg font-bold tracking-wide" data-page-node-id="lFkxHNM0zTz7j9aknC9K9h">朱明慈</span>
+      </a>
+
+      <!-- 中：导航菜单（PC） -->
+      <div class="hidden md:flex items-center gap-9 text-[15px] font-medium text-ink-700" data-page-node-id="Us9xp6vxT97QVozcEk7bzD">
+        <a href="#experience" class="relative py-2 hover:text-accent-600 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-full" data-page-node-id="GjX0zm6wQXk3DfaeHjwpsh">工作经历</a>
+        <a href="#services"   class="relative py-2 hover:text-accent-600 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-full" data-page-node-id="JvoN10PviQlpDxFDMHYpAc">服务内容</a>
+        <a href="#strengths"  class="relative py-2 hover:text-accent-600 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-0 after:bg-accent-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-full" data-page-node-id="QB6fa6j9vWD4X3lJb22jIc">个人优势</a>
+      </div>
+
+      <!-- 右：联系我（悬浮弹出微信 / 邮箱） -->
+      <div class="contact-wrap relative" data-page-node-id="1SQuR4Q3sGUOrz58wU9BpO">
+        <button id="contactBtn" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-semibold text-white bg-ink-900 hover:bg-accent-600 shadow-card transition-all duration-300 hover:-translate-y-0.5" data-page-node-id="XG6fYZUBCwbciHM7H9bC9j">
+          联系我
+        </button>
+
+        <div id="contactPop" class="contact-pop absolute right-0 top-[calc(100%+12px)] w-72 rounded-2xl bg-white/85 backdrop-blur-xl shadow-lift ring-1 ring-slate-900/5 p-5" data-page-node-id="n9uPYBs4dTAcXEvNSXWAjj">
+          <div class="absolute -top-1.5 right-6 w-3 h-3 rotate-45 bg-white/85 ring-1 ring-slate-900/5" data-page-node-id="UFrGK7pcLW7agYNRECwx5Z"></div>
+          <p class="text-xs font-semibold tracking-widest text-ink-500 mb-3" data-page-node-id="UjrNB33Wyz0WhN9VOEBPa4">联系方式</p>
+
+          <div class="flex items-center justify-between gap-2 py-2" data-page-node-id="zVp1GNnZsvbzBSUmoJExed">
+            <div class="min-w-0" data-page-node-id="yVk1Aj0NVGzqMS5yxl7ik4">
+              <p class="text-[11px] text-ink-500" data-page-node-id="m8TX9WfkDkO1DvnRkjjnpd">微信</p>
+              <p id="wxText" class="text-sm font-semibold truncate" data-page-node-id="f7JRqG9fvT1AWaF2ooz1iU">19848347272</p>
+            </div>
+            <button data-copy="19848347272" class="copy-btn shrink-0 text-xs font-medium px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-accent-500 hover:text-white transition-colors" data-page-node-id="WEqTzSxWvEcIm7WX23qq1x">复制</button>
+          </div>
+
+          <div class="flex items-center justify-between gap-2 py-2 border-t border-slate-200/70" data-page-node-id="Cethcw5EuYBsQAQ8fMwwlO">
+            <div class="min-w-0" data-page-node-id="8NgLDqOsFI0rIXA2LXNnXj">
+              <p class="text-[11px] text-ink-500" data-page-node-id="kgeAAFcezsimjWiq7YtKdi">邮箱</p>
+              <p class="text-sm font-semibold truncate" data-page-node-id="pICHilpMUZ5nMWWxFxNhyM">2269238542@qq.com</p>
+            </div>
+            <button data-copy="2269238542@qq.com" class="copy-btn shrink-0 text-xs font-medium px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-accent-500 hover:text-white transition-colors" data-page-node-id="h9WoQxbDZ38hoEzENW7SM9">复制</button>
+          </div>
+
+          <p id="copyTip" class="text-[11px] text-accent-600 font-medium h-4 mt-1 opacity-0 transition-opacity" data-page-node-id="pXuUTpZhaT3GUzYdjmZyEr">已复制到剪贴板 ✓</p>
+        </div>
+      </div>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden ml-2 w-10 h-10 grid place-items-center rounded-xl bg-white/70 backdrop-blur ring-1 ring-slate-900/5" aria-label="菜单" data-page-node-id="wiEJFAVa1wqofUHLOmvP2N">
+        <svg class="w-5 h-5 text-ink-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" data-page-node-id="l0dZuJXSSIWdCbvWPn2kWx"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" data-page-node-id="D8kh2g02H7Sq2terYYQ0GJ"/></svg>
+      </button>
+    </nav>
+
+    <!-- 移动端下拉菜单 -->
+    <div id="mobileMenu" class="md:hidden hidden mx-5 rounded-2xl bg-white/90 backdrop-blur-xl shadow-lift ring-1 ring-slate-900/5 p-3" data-page-node-id="9hf07gAqdQzvd1wRfz3NEu">
+      <a href="#experience" class="block px-4 py-3 rounded-xl font-medium hover:bg-slate-100" data-page-node-id="EvAhjwgxjLbmoQkcVrKEMg">工作经历</a>
+      <a href="#services"   class="block px-4 py-3 rounded-xl font-medium hover:bg-slate-100" data-page-node-id="E5fgwMwMyCdY6BZHBjixio">服务内容</a>
+      <a href="#strengths"  class="block px-4 py-3 rounded-xl font-medium hover:bg-slate-100" data-page-node-id="gk2Nfofmaz8ip2gBNIx39O">个人优势</a>
+    </div>
+  </header>
+
+  <!-- ================= 主视觉文字 ================= -->
+  <main class="relative z-20 flex-1 flex items-center" data-page-node-id="uCSk0WvEF9SqwB1dUGIw0J">
+    <div class="max-w-7xl mx-auto w-full px-5 sm:px-8 lg:px-10 pt-8 pb-10 md:pb-0" data-page-node-id="HJB9WNdK9XX8M0jZaWcwlF">
+      <div class="max-w-2xl" data-page-node-id="SvEnmCKkPWuFIfvThfZOLL">
+        <p class="fade-up d-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-ink-700 bg-white/60 backdrop-blur ring-1 ring-slate-900/5 shadow-glass mb-6 sm:mb-8" data-page-node-id="cjieDeTUWhCo7F2fkniqhx">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" data-page-node-id="WvrbNnlfmZnTTQDlU18n30"></span>
+          个人作品集 · 2026
+        </p>
+
+        <h1 class="fade-up d-2 text-[2.6rem] leading-[1.15] sm:text-6xl lg:text-7xl font-black tracking-tight text-ink-900 mb-5 sm:mb-7" data-page-node-id="ckPXEir3d6ZfLiAN6RkBoi">
+          让机器<span class="bg-gradient-to-r from-accent-500 to-violet-500 bg-clip-text text-transparent" data-page-node-id="fPs3o5skz2rw1HdObQlkFc">看懂</span><br class="hidden sm:block" data-page-node-id="hw2GrVYJHoOlB38So81711" />三维世界
+        </h1>
+
+        <p class="fade-up d-3 text-base sm:text-xl leading-relaxed text-ink-700 mb-7 sm:mb-10 max-w-xl" data-page-node-id="3xCNFeMNwpq6FOJrQ2TQjM">
+          嵌入式 AI 视觉 · AR 空间感知 · 计算机科学与技术在读<br class="hidden sm:block" data-page-node-id="AYwVJuMm4kMXYuGJwQCUGC" />
+          用真实项目与国家级金奖，回答"我能做什么"。
+        </p>
+
+        <div class="fade-up d-4 flex flex-wrap gap-2.5 mb-10 sm:mb-14" data-page-node-id="RJlVFLq4gOW1zeaeXVIzRI">
+          <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium bg-white/70 backdrop-blur ring-1 ring-slate-900/5 shadow-glass" data-page-node-id="bUVGY9XPjHarmEGncjmHEW">🏅 世界职业院校技能大赛 · 国家级金奖</span>
+          <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium bg-white/70 backdrop-blur ring-1 ring-slate-900/5 shadow-glass" data-page-node-id="bIPW6ldEkCwPvgbhFQEDZw">🚀 大创项目校赛立项 · 挑战杯省赛</span>
+          <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium bg-white/70 backdrop-blur ring-1 ring-slate-900/5 shadow-glass" data-page-node-id="cx7ySEhl03Cs8ywpHveNk9">👥 院团委部长 · 项目负责人</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= 作品预览 · 无限滑动 ================= -->
+  <footer class="relative z-20 pb-8 sm:pb-10" data-page-node-id="7oDnGWz97yFsaa2JnrSXri">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 mb-4 flex items-center justify-between" data-page-node-id="AOjX0i20EDRv8RCc6SU3vN">
+      <p class="fade-up d-5 text-xs sm:text-sm font-semibold tracking-widest text-ink-500" data-page-node-id="iNyWIDcOrZfPE3SipP4ft3">精选作品 / SELECTED WORKS</p>
+      <p class="fade-up d-5 hidden sm:block text-xs text-ink-500" data-page-node-id="8B2SomUxXep5gMumRsPSh4">悬停可暂停滑动</p>
+    </div>
+
+    <div class="marquee fade-up d-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]" data-page-node-id="UuEmdkEmqn4fKXqLWecCsG">
+      <div class="marquee-track" id="marqueeTrack" data-page-node-id="dBBWmiDfNsttHGBLeQoXl3"><!-- JS 注入卡片，复制一份实现无缝循环 --></div>
+    </div>
+  </footer>
+</section>
+
+<!-- ================= 第二屏 · 个人介绍 ================= -->
+<section id="experience" class="relative overflow-hidden bg-[#070d1c]">
+
+  <!-- 上下屏过渡带（浅 → 深，避免硬切） -->
+  <div class="h-24 sm:h-32 bg-gradient-to-b from-slate-50 via-[#93a3bd]/40 to-[#070d1c]"></div>
+
+  <!-- 深色蓝调底 + 柔和 3D 光斑 -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#070d1c] via-[#0a1428] to-[#0c1a33]"></div>
+  <div class="absolute -z-10 top-[12%] left-[6%] w-[26rem] h-[26rem] rounded-full bg-indigo-500/20 blur-3xl blob"></div>
+  <div class="absolute -z-10 top-[42%] right-[4%] w-[30rem] h-[30rem] rounded-full bg-violet-500/15 blur-3xl blob" style="animation-delay:-6s"></div>
+  <div class="absolute -z-10 bottom-[6%] left-[28%] w-[24rem] h-[24rem] rounded-full bg-cyan-400/10 blur-3xl blob" style="animation-delay:-11s"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-16 sm:pt-24 pb-20 sm:pb-28">
+
+    <!-- ---------- 板块大标题 ---------- -->
+    <div class="reveal max-w-3xl mb-12 sm:mb-16">
+      <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-white/70 bg-white/5 ring-1 ring-white/10 backdrop-blur mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-pulse"></span>
+        ABOUT ME · 关于我
+      </p>
+      <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1]">
+        WORK EXPERIENCE
+        <span class="block mt-2 bg-gradient-to-r from-indigo-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent">个人经历</span>
+      </h2>
+      <p class="mt-6 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+        嵌入式 AI 视觉与 AR 空间感知方向的实践者——从算法调试到项目牵头，习惯把模糊目标拆成可执行步骤，再推动落地闭环。
+      </p>
+    </div>
+
+    <!-- ---------- IP 头像 + 自我介绍 ---------- -->
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20 sm:mb-24">
+
+      <!-- 头像卡（想换成真实照片：把下面 .avatar-box 整块替换为 <img src="你的图片链接" class="w-full h-full object-cover"> 即可） -->
+      <div class="reveal lg:col-span-4">
+        <div class="rounded-3xl bg-white/[0.06] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7 shadow-[0_20px_60px_-20px_rgba(79,70,229,.45)]">
+          <div class="relative mx-auto w-40 h-40 sm:w-48 sm:h-48">
+            <div class="absolute inset-0 rounded-[2.2rem] bg-gradient-to-br from-indigo-400 via-violet-400 to-cyan-300 blur-xl opacity-45"></div>
+            <div class="avatar-box relative w-full h-full rounded-[2.2rem] bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-400 grid place-items-center overflow-hidden ring-1 ring-white/20">
+              <span class="text-6xl sm:text-7xl font-black text-white drop-shadow-lg select-none">朱</span>
+              <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"></div>
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-white">朱明慈</h3>
+            <p class="text-sm text-slate-400 mt-1.5">计算机科学与技术 · 南京财经大学</p>
+            <div class="flex flex-wrap justify-center gap-2 mt-4">
+              <span class="px-3 py-1 rounded-full text-[11px] font-medium text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">嵌入式 AI 视觉</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-medium text-cyan-200 bg-cyan-400/15 ring-1 ring-cyan-300/25">AR / SLAM</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-white/10 grid grid-cols-2 gap-4 text-center">
+            <div>
+              <p class="text-xs text-slate-400">在读年级</p>
+              <p class="text-sm font-semibold text-white mt-0.5">2024 级本科</p>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400">常住地</p>
+              <p class="text-sm font-semibold text-white mt-0.5">江苏 · 南京</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 自我介绍文本 -->
+      <div class="reveal lg:col-span-8">
+        <div class="rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-7 sm:p-9">
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-5 flex items-center gap-3">
+            <span class="w-1 h-6 rounded-full bg-gradient-to-b from-indigo-400 to-cyan-300"></span>
+            我是谁
+          </h3>
+
+          <div class="space-y-5 text-sm sm:text-base leading-relaxed text-slate-300">
+            <p>
+              我是朱明慈，南京财经大学计算机科学与技术专业在读。方向聚焦
+              <span class="text-white font-semibold">嵌入式 AI 视觉</span>与
+              <span class="text-white font-semibold">AR 空间感知</span>：在 <span class="text-white font-semibold">LandMarkAR</span> 项目中参与 SLAM 三维建图模块开发，做算法调试与数据优化；目前牵头
+              <span class="text-white font-semibold">嵌入式 AI 视觉中枢</span>项目，负责技术路线规划与团队组织，已完成大创项目校赛立项并晋级挑战杯省赛。
+            </p>
+            <p>
+              技术上，我熟练使用 Java、Python、C++，具备数据结构与算法基础应用能力，熟悉数据库操作与 AR / SLAM 建图相关技术，了解嵌入式 AI 视觉开发流程。
+            </p>
+            <p>
+              除此之外，我担任院团委部长与班级团支书，习惯把模糊的目标拆成可执行的步骤，再联动资源推动落地——这也是我在项目中最有价值的部分。
+            </p>
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#services" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-violet-500 hover:shadow-[0_12px_30px_-8px_rgba(99,102,241,.7)] transition-all duration-300 hover:-translate-y-0.5">
+              查看技能与服务
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+            </a>
+            <a href="#highlights" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-slate-200 bg-white/5 ring-1 ring-white/15 hover:bg-white/10 transition-colors">
+              数据亮点
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- 数据亮点 ---------- -->
+    <div id="highlights" class="reveal mb-20 sm:mb-24 scroll-mt-8">
+      <div class="mb-8">
+        <p class="text-xs font-semibold tracking-widest text-cyan-300/80 mb-2">HIGHLIGHTS</p>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white">数据亮点</h3>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.09] hover:ring-indigo-300/30 transition-all duration-500 hover:-translate-y-1">
+          <p class="text-3xl sm:text-4xl font-black text-white">1<span class="text-base font-bold text-indigo-300 ml-1">项</span></p>
+          <p class="text-sm font-semibold text-white mt-3">国家级金奖</p>
+          <p class="text-[11px] sm:text-xs text-slate-400 mt-1.5 leading-relaxed">世界职业院校技能大赛 · 人工智能赛道</p>
+        </div>
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.09] hover:ring-violet-300/30 transition-all duration-500 hover:-translate-y-1">
+          <p class="text-3xl sm:text-4xl font-black text-white">2<span class="text-base font-bold text-violet-300 ml-1">个</span></p>
+          <p class="text-sm font-semibold text-white mt-3">主导 / 核心项目</p>
+          <p class="text-[11px] sm:text-xs text-slate-400 mt-1.5 leading-relaxed">嵌入式 AI 视觉中枢 · LandMarkAR</p>
+        </div>
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.09] hover:ring-cyan-300/30 transition-all duration-500 hover:-translate-y-1">
+          <p class="text-3xl sm:text-4xl font-black text-white">2<span class="text-base font-bold text-cyan-300 ml-1">年</span></p>
+          <p class="text-sm font-semibold text-white mt-3">学生工作经历</p>
+          <p class="text-[11px] sm:text-xs text-slate-400 mt-1.5 leading-relaxed">院团委部长 · 班级团支书</p>
+        </div>
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.09] hover:ring-indigo-300/30 transition-all duration-500 hover:-translate-y-1">
+          <p class="text-3xl sm:text-4xl font-black text-white">3<span class="text-base font-bold text-indigo-300 ml-1">门</span></p>
+          <p class="text-sm font-semibold text-white mt-3">主力编程语言</p>
+          <p class="text-[11px] sm:text-xs text-slate-400 mt-1.5 leading-relaxed">Java · Python · C++</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- 技能标签 ---------- -->
+    <div id="services" class="reveal mb-20 sm:mb-24 scroll-mt-8">
+      <div class="mb-8">
+        <p class="text-xs font-semibold tracking-widest text-cyan-300/80 mb-2">SKILLS &amp; SERVICES</p>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white">技能标签</h3>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-6 hover:ring-indigo-300/30 transition-colors duration-500">
+          <h4 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>编程语言
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-indigo-500/25 hover:ring-indigo-300/40 transition-colors cursor-default">Java</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-indigo-500/25 hover:ring-indigo-300/40 transition-colors cursor-default">Python</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-indigo-500/25 hover:ring-indigo-300/40 transition-colors cursor-default">C++</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-indigo-500/25 hover:ring-indigo-300/40 transition-colors cursor-default">数据结构与算法</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-6 hover:ring-violet-300/30 transition-colors duration-500">
+          <h4 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>技术方向
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-violet-500/25 hover:ring-violet-300/40 transition-colors cursor-default">AR / SLAM 三维建图</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-violet-500/25 hover:ring-violet-300/40 transition-colors cursor-default">嵌入式 AI 视觉</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-violet-500/25 hover:ring-violet-300/40 transition-colors cursor-default">数据库操作</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-6 hover:ring-cyan-300/30 transition-colors duration-500">
+          <h4 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>工程与协作
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-cyan-500/25 hover:ring-cyan-300/40 transition-colors cursor-default">项目申报文档</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-cyan-500/25 hover:ring-cyan-300/40 transition-colors cursor-default">PPT 制作</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-cyan-500/25 hover:ring-cyan-300/40 transition-colors cursor-default">赛事答辩</span>
+            <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium text-slate-200 bg-white/5 ring-1 ring-white/10 hover:bg-cyan-500/25 hover:ring-cyan-300/40 transition-colors cursor-default">团队统筹</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- 经历时间线 ---------- -->
+    <div class="reveal">
+      <div class="mb-8">
+        <p class="text-xs font-semibold tracking-widest text-cyan-300/80 mb-2">TIMELINE</p>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white">经历时间线</h3>
+      </div>
+
+      <div class="relative pl-6 sm:pl-8">
+        <div class="absolute left-[7px] sm:left-[9px] top-2 bottom-2 w-px bg-gradient-to-b from-indigo-400/70 via-violet-400/40 to-transparent"></div>
+
+        <div class="relative pb-10">
+          <span class="absolute -left-6 sm:-left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-indigo-400 to-violet-400 ring-4 ring-[#0a1428]"></span>
+          <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.08] transition-colors duration-500">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">2025.09 - 至今</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-cyan-200 bg-cyan-400/15 ring-1 ring-cyan-300/25">项目负责人</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white">嵌入式 AI 视觉中枢 · 南京财经大学</h4>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-indigo-300 mt-0.5">▸</span><span>牵头组建研究团队，规划技术路线与研究方向，完成大创项目申报及校赛立项答辩。</span></li>
+              <li class="flex gap-2.5"><span class="text-indigo-300 mt-0.5">▸</span><span>通过大创项目校赛立项审核，成功晋级挑战杯省赛，完成技术方案阶段性落地推进。</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pb-10">
+          <span class="absolute -left-6 sm:-left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-violet-400 to-cyan-300 ring-4 ring-[#0a1428]"></span>
+          <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.08] transition-colors duration-500">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">2025.09 - 至今</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-violet-200 bg-violet-400/15 ring-1 ring-violet-300/25">院团委部长</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white">院团委部长 · 南京财经大学</h4>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-violet-300 mt-0.5">▸</span><span>统筹推进校园文化及志愿服务类活动，细化流程分工与资源调配，确保各项活动有序落地执行。</span></li>
+              <li class="flex gap-2.5"><span class="text-violet-300 mt-0.5">▸</span><span>承接校团委工作部署，联动各班级团支部传递要求，收集整理工作反馈并及时上报。</span></li>
+              <li class="flex gap-2.5"><span class="text-violet-300 mt-0.5">▸</span><span>带领部员开展日常事务处理，制定分工细则，组织专项技能培训强化团队协作能力。</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pb-10">
+          <span class="absolute -left-6 sm:-left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-cyan-300 to-indigo-400 ring-4 ring-[#0a1428]"></span>
+          <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.08] transition-colors duration-500">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">2025.09 - 至今</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-cyan-200 bg-cyan-400/15 ring-1 ring-cyan-300/25">班级团支书</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white">班级团支书 · 南京财经大学</h4>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-cyan-300 mt-0.5">▸</span><span>组织“青年大学习”“主题团日”等活动，引导班级同学强化思想建设、提升综合素养。</span></li>
+              <li class="flex gap-2.5"><span class="text-cyan-300 mt-0.5">▸</span><span>负责班级团员信息管理、团费收缴及评优推荐，规范推进各项日常团务工作。</span></li>
+              <li class="flex gap-2.5"><span class="text-cyan-300 mt-0.5">▸</span><span>收集班级同学合理诉求与建议，对接辅导员及学院部门，协助推动诉求妥善解决。</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pb-10">
+          <span class="absolute -left-6 sm:-left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-indigo-400 to-cyan-300 ring-4 ring-[#0a1428]"></span>
+          <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.08] transition-colors duration-500">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">2025.04 - 2025.08</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-amber-200 bg-amber-400/15 ring-1 ring-amber-300/25">🏅 国家级金奖</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white">LandMarkAR · 核心成员</h4>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-indigo-300 mt-0.5">▸</span><span>参与 SLAM 三维建图模块开发，开展算法调试与数据优化，完成建图流程关键环节实操。</span></li>
+              <li class="flex gap-2.5"><span class="text-indigo-300 mt-0.5">▸</span><span>项目斩获世界职业院校技能大赛人工智能赛道国家级金奖。</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative">
+          <span class="absolute -left-6 sm:-left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-slate-400 to-indigo-400 ring-4 ring-[#0a1428]"></span>
+          <div class="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur-xl p-5 sm:p-6 hover:bg-white/[0.08] transition-colors duration-500">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-indigo-200 bg-indigo-400/15 ring-1 ring-indigo-300/25">2024.07 - 2024.08</span>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold text-slate-300 bg-white/10 ring-1 ring-white/20">数学辅导老师</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-bold text-white">卓越教育机构 · 数学辅导老师</h4>
+            <ul class="mt-3 space-y-2 text-sm text-slate-300 leading-relaxed">
+              <li class="flex gap-2.5"><span class="text-slate-400 mt-0.5">▸</span><span>协助主讲教师准备教学材料、组织课堂活动，保障课堂秩序与学习支持。</span></li>
+              <li class="flex gap-2.5"><span class="text-slate-400 mt-0.5">▸</span><span>批改作业并针对知识点提供反馈，承担课后答疑；定期与家长沟通学习进度与改进建议。</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 第二屏底部 -->
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pb-16">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t border-white/10">
+      <p class="text-xs text-slate-500">© 2026 朱明慈 · 个人作品集 · 页面持续更新中</p>
+      <a href="#top" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition-colors">
+        回到顶部
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第四屏 · 个人优势 ================= -->
+<section id="strengths" class="relative overflow-hidden bg-[#060b16]">
+
+  <!-- 深色底 + 荧光绿柔光 -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#060b16] via-[#08141f] to-[#070f18]"></div>
+  <div class="absolute -z-10 top-[8%] right-[6%] w-[26rem] h-[26rem] rounded-full bg-lime-400/10 blur-3xl blob"></div>
+  <div class="absolute -z-10 bottom-[10%] left-[4%] w-[22rem] h-[22rem] rounded-full bg-emerald-400/[0.08] blur-3xl blob" style="animation-delay:-8s"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-20 sm:pt-28 pb-20 sm:pb-28">
+
+    <!-- ---------- 板块标题 ---------- -->
+    <div class="reveal max-w-3xl mb-12 sm:mb-16">
+      <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-white/70 bg-white/5 ring-1 ring-white/10 backdrop-blur mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-lime-300 animate-pulse"></span>
+        STRENGTHS · 核心竞争力
+      </p>
+      <h2 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1]">
+        Personal strengths
+        <span class="block mt-2 bg-gradient-to-r from-lime-200 via-lime-300 to-emerald-300 bg-clip-text text-transparent">个人优势</span>
+      </h2>
+      <p class="mt-6 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+        五项核心能力——从算法实践、嵌入式开发到项目牵头与团队统筹，全部来自真实项目与赛事经历。
+      </p>
+    </div>
+
+    <!-- ---------- 5 个能力卡片 ---------- -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+      <article class="reveal group relative rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7
+                      transition-all duration-500 ease-out
+                      hover:bg-white/[0.08] hover:ring-lime-300/40 hover:-translate-y-1.5 hover:scale-[1.03]
+                      hover:shadow-[0_24px_60px_-20px_rgba(163,230,53,.35)]">
+        <span class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <span class="inline-grid place-items-center w-10 h-10 rounded-xl text-sm font-black text-[#06131f] bg-gradient-to-br from-lime-300 to-emerald-300 shadow-[0_8px_24px_-8px_rgba(163,230,53,.6)]">01</span>
+        <h3 class="mt-5 text-lg sm:text-xl font-bold text-white leading-snug">项目牵头与技术路线规划</h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">作为「嵌入式 AI 视觉中枢」项目负责人，牵头组建团队、规划技术路线与研究方向，推动完成大创项目申报及校赛立项答辩。</p>
+      </article>
+
+      <article class="reveal group relative rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7
+                      transition-all duration-500 ease-out
+                      hover:bg-white/[0.08] hover:ring-lime-300/40 hover:-translate-y-1.5 hover:scale-[1.03]
+                      hover:shadow-[0_24px_60px_-20px_rgba(163,230,53,.35)]">
+        <span class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <span class="inline-grid place-items-center w-10 h-10 rounded-xl text-sm font-black text-[#06131f] bg-gradient-to-br from-lime-300 to-emerald-300 shadow-[0_8px_24px_-8px_rgba(163,230,53,.6)]">02</span>
+        <h3 class="mt-5 text-lg sm:text-xl font-bold text-white leading-snug">SLAM / AR 三维建图实践</h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">在 LandMarkAR 中参与 SLAM 三维建图模块开发，完成算法调试与数据优化；项目获世界职业院校技能大赛人工智能赛道国家级金奖。</p>
+      </article>
+
+      <article class="reveal group relative rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7
+                      transition-all duration-500 ease-out
+                      hover:bg-white/[0.08] hover:ring-lime-300/40 hover:-translate-y-1.5 hover:scale-[1.03]
+                      hover:shadow-[0_24px_60px_-20px_rgba(163,230,53,.35)]">
+        <span class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <span class="inline-grid place-items-center w-10 h-10 rounded-xl text-sm font-black text-[#06131f] bg-gradient-to-br from-lime-300 to-emerald-300 shadow-[0_8px_24px_-8px_rgba(163,230,53,.6)]">03</span>
+        <h3 class="mt-5 text-lg sm:text-xl font-bold text-white leading-snug">嵌入式 AI 视觉开发</h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">方向聚焦嵌入式 AI 视觉，了解从算法到嵌入式设备落地的开发流程，能看懂并推进技术方案。</p>
+      </article>
+
+      <article class="reveal group relative rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7
+                      transition-all duration-500 ease-out
+                      hover:bg-white/[0.08] hover:ring-lime-300/40 hover:-translate-y-1.5 hover:scale-[1.03]
+                      hover:shadow-[0_24px_60px_-20px_rgba(163,230,53,.35)]">
+        <span class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <span class="inline-grid place-items-center w-10 h-10 rounded-xl text-sm font-black text-[#06131f] bg-gradient-to-br from-lime-300 to-emerald-300 shadow-[0_8px_24px_-8px_rgba(163,230,53,.6)]">04</span>
+        <h3 class="mt-5 text-lg sm:text-xl font-bold text-white leading-snug">赛事答辩与申报材料撰写</h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">承担项目申报文档撰写与 PPT 制作，多次完成立项答辩与赛事路演，能把技术方案讲清楚、讲到位。</p>
+      </article>
+
+      <article class="reveal group relative rounded-3xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur-xl p-6 sm:p-7
+                      transition-all duration-500 ease-out
+                      hover:bg-white/[0.08] hover:ring-lime-300/40 hover:-translate-y-1.5 hover:scale-[1.03]
+                      hover:shadow-[0_24px_60px_-20px_rgba(163,230,53,.35)]">
+        <span class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-lime-300/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        <span class="inline-grid place-items-center w-10 h-10 rounded-xl text-sm font-black text-[#06131f] bg-gradient-to-br from-lime-300 to-emerald-300 shadow-[0_8px_24px_-8px_rgba(163,230,53,.6)]">05</span>
+        <h3 class="mt-5 text-lg sm:text-xl font-bold text-white leading-snug">团队统筹与跨角色对接</h3>
+        <p class="mt-3 text-sm text-slate-400 leading-relaxed">院团委部长兼班级团支书，统筹校园文化活动与志愿服务，联动各班级团支部、带领部员推进事务闭环。</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* ================= 作品数据（均来自真实经历，图片为网络 URL） ================= */
+const WORKS = [
+  { title: 'LandMarkAR · AR 空间感知系统', sub: '世界技能大赛 AI 赛道 · 国家级金奖', tag: 'AR / 三维感知',
+    img: 'https://images.unsplash.com/photo-1626544827763-d516dce335e2?w=640&h=420&fit=crop&q=70&auto=format' },
+  { title: '嵌入式 AI 视觉中枢', sub: '大创项目负责人 · 校赛立项', tag: '嵌入式 / AI',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=640&h=420&fit=crop&q=70&auto=format' },
+  { title: 'SLAM 三维建图模块', sub: '算法调试 · 数据优化', tag: 'SLAM',
+    img: 'https://images.unsplash.com/photo-1618172193763-c511deb635ca?w=640&h=420&fit=crop&q=70&auto=format' },
+  { title: '世界职业院校技能大赛', sub: '人工智能赛道 · 国家级金奖', tag: '金奖',
+    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=640&h=420&fit=crop&q=70&auto=format' },
+  { title: '技术方案 · 申报与答辩', sub: '大创立项 · 晋级挑战杯省赛', tag: '路演答辩',
+    img: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=640&h=420&fit=crop&q=70&auto=format' },
+  { title: '校园文化与志愿服务统筹', sub: '院团委部长 · 班级团支书', tag: '团队统筹',
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=640&h=420&fit=crop&q=70&auto=format' },
+];
+
+/* ================= 渲染卡片（内容 ×2，实现无缝循环） ================= */
+const track = document.getElementById('marqueeTrack');
+const cardHTML = w => `
+  <article class="work-card group relative w-64 sm:w-80 shrink-0 mx-2.5 sm:mx-3.5 rounded-2xl overflow-hidden shadow-card hover:shadow-lift transition-shadow duration-500 select-none">
+    <div class="aspect-[3/2] overflow-hidden bg-slate-200">
+      <img src="${w.img}" alt="${w.title}" draggable="false" class="card-img w-full h-full object-cover" />
+    </div>
+    <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-slate-900/75 via-slate-900/25 to-transparent">
+      <span class="inline-block mb-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold text-white bg-white/20 backdrop-blur">${w.tag}</span>
+      <h3 class="text-sm sm:text-base font-bold text-white leading-snug">${w.title}</h3>
+      <p class="text-[11px] sm:text-xs text-white/75 mt-0.5">${w.sub}</p>
+    </div>
+  </article>`;
+track.innerHTML = WORKS.map(cardHTML).join('') + WORKS.map(cardHTML).join('');
+
+/* ================= 联系我：移动端点击弹层 ================= */
+const btn = document.getElementById('contactBtn');
+const pop = document.getElementById('contactPop');
+btn.addEventListener('click', e => { e.stopPropagation(); pop.classList.toggle('open'); });
+document.addEventListener('click', e => {
+  if (!pop.contains(e.target) && e.target !== btn) pop.classList.remove('open');
+});
+
+/* ================= 复制到剪贴板（含 file:// 降级方案） ================= */
+document.querySelectorAll('.copy-btn').forEach(b => {
+  b.addEventListener('click', async () => {
+    const text = b.dataset.copy, tip = document.getElementById('copyTip');
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (_) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); ta.remove();
+    }
+    tip.style.opacity = '1';
+    setTimeout(() => tip.style.opacity = '0', 1600);
+  });
+});
+
+/* ================= 移动端菜单 ================= */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+mobileMenu.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+/* ================= 第二屏：滚动进入视口淡入 ================= */
+(function () {
+  const items = document.querySelectorAll('.reveal');
+  if (typeof IntersectionObserver === 'undefined') {
+    items.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const idx = Array.prototype.indexOf.call(items, el);
+        el.style.transitionDelay = Math.min(idx, 4) * 90 + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  items.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
